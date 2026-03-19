@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nguyên Khôi trade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Công ty TNHH Nguyên Khôi</h1>
+
+</header>
+<div id="user-info"></div>
+<style>
+    #user-info {
+        position: absolute;
+        top: 130px;      /* cách mép trên */
+        right: 100px;    /* cách mép phải */
+    }
+</style>
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="giohang.html">Giỏ hàng</a>
+    <a href="checkout.html">Thanh toán</a>
+</nav>
+
+<section class="about">
+
+    <h2>Giới thiệu doanh nghiệp</h2>
+
+    <p>
+        Công ty TNHH Nguyên Khôi là doanh nghiệp chuyên kinh doanh các sản phẩm
+        công nghệ như điện thoại, laptop, phụ kiện điện tử. Với nhiều năm kinh nghiệm
+        trong lĩnh vực thương mại điện tử, chúng tôi cam kết mang đến cho khách hàng
+        những sản phẩm chất lượng cao, giá cả hợp lý và dịch vụ chăm sóc khách hàng tốt nhất.
+    </p>
+
+    <p>
+        Sứ mệnh của chúng tôi là cung cấp các sản phẩm công nghệ hiện đại,
+        giúp khách hàng tiếp cận với những giải pháp tiện ích trong cuộc sống
+        và công việc hàng ngày.
+    </p>
+
+</section>
+<section class="products">
+
+    <div class="product">
+        <img src="images/điệnthoại.jpg" class="p-img">
+
+        <div class="name">Điện thoại Samsung Galaxy</div>
+        <div class="price">5000000</div>
+
+        <div class="product-buttons">
+
+            <!-- KHÔNG dùng href nữa -->
+            <button class="detail">Chi tiết</button>
+            <button class="buy"
+                    onclick="addCart('Điện thoại Samsung Galaxy', 5000000, 'images/điệnthoại.jpg')">
+                Mua
+            </button>
+
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="images/laptop.jpg" class="p-img">
+        <div class="name">Laptop</div>
+        <div class="price">15000000</div>
+
+        <div class="product-buttons">
+
+            <!-- KHÔNG dùng href nữa -->
+            <button class="detail">Chi tiết</button>
+
+            <button class="buy" onclick="addCart('Laptop', 15000000, 'images/laptop.jpg')">
+                Mua
+            </button>
+
+        </div>
+    </div>
+
+
+    </div>
+
+    <div class="product">
+        <img src="images/tai nghe.jpg" class="p-img">
+        <!-- TÊN -->
+        <div class="name">Tai nghe</div>
+        <div class="price">500000</div>
+
+        <div class="product-buttons">
+
+            <!-- KHÔNG dùng href nữa -->
+            <button class="detail">Chi tiết</button>
+
+            <button class="buy" onclick="addCart('Tai nghe', 500000, 'images/tai nghe.jpg'')">
+                Mua
+            </button>
+
+        </div>
+    </div>
+
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+<footer class="footer">
+
+    <h3>Liên hệ với chúng tôi</h3>
+
+    <p>Công ty TNHH Nguyên Khôi</p>
+
+    <p>Địa chỉ: Hà Nội, Việt Nam</p>
+
+    <p>Điện thoại: 0900 123 456</p>
+
+    <p>Email: nguyenkhoi@gmail.com</p>
+
+    <p>Website: nguyenkhoishop.com</p>
+
+</footer>
+<script>
+
+    let user = localStorage.getItem("user");
+
+    if(user){
+
+        document.getElementById("user-info").innerHTML =
+            "Xin chào, " + user + " | <a href='#' onclick='logout()'>Đăng xuất</a>";
+
+    }else{
+
+        document.getElementById("user-info").innerHTML =
+            "<a href='dangnhap.html'>Đăng nhập</a>";
+
+    }
+
+    function logout(){
+
+        localStorage.removeItem("user");
+
+        location.reload();
+
+    }
+
+</script>
+</body>
+</html>

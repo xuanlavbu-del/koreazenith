@@ -1,0 +1,94 @@
+body{
+    font-family:arial;
+    background:#f2f2f2;
+    margin:0;
+}
+
+header{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:#555;
+    padding:10px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+}
+
+.products{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.product{
+    background:white;
+    width:250px;
+    margin:20px;
+    padding:15px;
+    text-align:center;
+    border-radius:10px;
+}
+
+.product img{
+    width:200px;
+    height:200px;
+}
+
+button{
+    background:orange;
+    color:white;
+    border:none;
+    padding:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:red;
+}
+
+.form-box{
+    width:300px;
+    margin:auto;
+    background:white;
+    padding:20px;
+}
+
+.form-box input{
+    width:100%;
+    padding:8px;
+    margin:10px 0;
+}
+.footer{
+
+    background:#333;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-top:50px;
+
+}
+.dienthoai-detail{
+
+    width:400px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.cart {
+    font-family: inherit;
+}

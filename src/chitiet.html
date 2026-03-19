@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        img {
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        .name {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .price {
+            color: red;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Chi tiết sản phẩm</h1>
+
+<img id="img">
+
+<div class="name" id="name"></div>
+<div class="price" id="price"></div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const name = params.get("name");
+    const price = params.get("price");
+    const img = params.get("img");
+
+    document.getElementById("name").innerText = name;
+    document.getElementById("price").innerText = price + "đ";
+    document.getElementById("img").src = img;
+</script>
+
+<button onclick="addToCart()">Thêm vào giỏ hàng</button>
+<button onclick="goCart()">Xem giỏ hàng</button>
+</body>
+</html>
