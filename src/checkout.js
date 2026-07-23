@@ -1,40 +1,60 @@
-<!DOCTYPE html>
-<html>
+// Lấy giỏ hàng từ localStorage
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-<head>
+let cartList = document.getElementById("cart-list");
 
-<meta charset="UTF-8">
+// Hiển thị sản phẩm
+function renderCart() {
 
-    <title>Thanh toán</title>
+    if(cart.length === 0){
+        cartList.innerHTML = "<li>Giỏ hàng trống</li>";
+        return;
+    }
 
-<link rel="stylesheet" href="css/style.css">
+    cartList.innerHTML = "";
 
-</head>
+    cart.forEach(item => {
+        let li = document.createElement("li");
+        li.innerHTML = `
+            ${item.name} - ${item.price} x ${item.quantity}
+        `;
+        cartList.appendChild(li);
+    });
+}
 
-<body>
+renderCart();
 
-<h1>Thanh toán đơn hàng</h1>
 
-<h2>Thông tin khách hàng</h2>
+// Xử lý form thanh toán
+document.getElementById("checkout-form").addEventListener("submit", function(e){
+    e.preventDefault();
 
-<form id="checkout-form">
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
 
-    <input type="text" id="name" placeholder="Họ tên" required>
+    if(cart.length === 0){
+        alert("Giỏ hàng đang trống!");
+        return;
+    }
 
-        <input type="text" id="phone" placeholder="Số điện thoại" required>
+    // Lưu đơn hàng (có thể nâng cấp sau)
+    let order = {
+        customer: {
+            name,
+            phone,
+            address
+        },
+        cart: cart
+    };
 
-            <input type="text" id="address" placeholder="Địa chỉ" required>
+    console.log(order);
 
-                <button type="submit">Thanh toán</button>
+    alert("Đặt hàng thành công!");
 
-</form>
+    // Xóa giỏ hàng sau khi thanh toán
+    localStorage.removeItem("cart");
 
-<h2>Sản phẩm đã chọn</h2>
-
-<ul id="cart-list"></ul>
-
-<script src="js/checkout.js"></script>
-
-</body>
-
-</html>
+    // Reload lại
+    location.reload();
+});

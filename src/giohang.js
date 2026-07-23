@@ -16,6 +16,25 @@ function renderCart(){
         total += itemTotal;
 
         row.innerHTML = `
+<div id="cart"></div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let html = "";
+
+cart.forEach(item => {
+    html += \`
+        <div>
+            <img src="${item.img}" width="100">
+            <p>${item.name}</p>
+            <p>${item.price} VND</p>
+        </div>
+    \`;
+});
+
+document.getElementById("cart").innerHTML = html;
+</script>
 <td>${item.name}</td>
 <td>${item.price}</td>
 <td>

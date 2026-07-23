@@ -27,9 +27,33 @@
     </style>
 </head>
 <body>
+<title>Nguyên Khôi trade</title>
+<link rel="stylesheet" href="style.css">
+
+<header>
+    <h1>Công ty TNHH Nguyên Khôi</h1>
+
+</header>
+
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="giohang.html">Giỏ hàng</a>
+    <a href="checkout.html">Thanh toán</a>
+    <div class="dropdown">
+        <button class="dropbtn">Sản phẩm</button>
+        <div class="dropdown-content">
+            <a href="#">Điện thoại</a>
+            <a href="#">Laptop</a>
+            <a href="#">Tai nghe</a>
+        </div>
+    </div>
+    <div id="user-info">
+        <a href="login.html">Đăng nhập</a>
+    </div>
+</nav>
 
 <h1>Chi tiết sản phẩm</h1>
-
 <img id="img">
 
 <div class="name" id="name"></div>
@@ -46,8 +70,89 @@
     document.getElementById("price").innerText = price + "đ";
     document.getElementById("img").src = img;
 </script>
-
+<button onclick="goHome()">⬅ Quay lại trang chủ</button>
 <button onclick="addToCart()">Thêm vào giỏ hàng</button>
 <button onclick="goCart()">Xem giỏ hàng</button>
+
+<script>
+    function addToCart() {
+        let product = {
+            name: name,
+            price: price,
+            img: img,
+            quantity: 1
+        };
+
+        // Lấy giỏ hàng từ localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let found = cart.find(item => item.name === name);
+
+        if(found){
+            found.quantity++;
+        }else{
+            cart.push({
+                name: name,
+                price: price,
+                img: img,
+                quantity: 1
+            });
+        }
+
+        // Lưu lại
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert("Đã thêm vào giỏ hàng!");
+    }
+
+    function goCart() {
+        window.location.href = "giohang.html";
+    }
+</script>
+<script>
+    function goHome() {
+        window.location.href = "index.html";
+    }
+</script>
+
+<footer class="footer">
+
+    <h3>Liên hệ với chúng tôi</h3>
+
+    <p>Công ty TNHH Nguyên Khôi</p>
+
+    <p>Địa chỉ: Hà Nội, Việt Nam</p>
+
+    <p>Điện thoại: 0900 123 456</p>
+
+    <p>Email: nguyenkhoi@gmail.com</p>
+
+    <p>Website: nguyenkhoishop.com</p>
+
+</footer>
+<script>
+
+    let user = localStorage.getItem("user");
+
+    if(user){
+
+        document.getElementById("user-info").innerHTML =
+            "Xin chào, " + user + " | <a href='#' onclick='logout()'>Đăng xuất</a>";
+
+    }else{
+
+        document.getElementById("user-info").innerHTML =
+            "<a href='dangnhap.html'>Đăng nhập</a>";
+
+    }
+
+    function logout(){
+
+        localStorage.removeItem("user");
+
+        location.reload();
+
+    }
+
+</script>
 </body>
 </html>

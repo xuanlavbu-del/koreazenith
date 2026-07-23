@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Nguyên Khôi trade</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
@@ -13,25 +15,31 @@
     <h1>Công ty TNHH Nguyên Khôi</h1>
 
 </header>
-<div id="user-info"></div>
-<style>
-    #user-info {
-        position: absolute;
-        top: 130px;      /* cách mép trên */
-        right: 100px;    /* cách mép phải */
-    }
-</style>
+
+
 <nav>
     <a href="index.html">Trang chủ</a>
     <a href="giohang.html">Giỏ hàng</a>
     <a href="checkout.html">Thanh toán</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">Sản phẩm</button>
+        <div class="dropdown-content">
+            <a href="#">Điện thoại</a>
+            <a href="#">Laptop</a>
+            <a href="#">Tai nghe</a>
+        </div>
+    </div>
+    <div id="user-info">
+        <a href="login.html">Đăng nhập</a>
+    </div>
 </nav>
 
 <section class="about">
 
     <h2>Giới thiệu doanh nghiệp</h2>
 
-    <p>
+    <p style="text-indent: 2em">
         Công ty TNHH Nguyên Khôi là doanh nghiệp chuyên kinh doanh các sản phẩm
         công nghệ như điện thoại, laptop, phụ kiện điện tử. Với nhiều năm kinh nghiệm
         trong lĩnh vực thương mại điện tử, chúng tôi cam kết mang đến cho khách hàng
@@ -45,7 +53,7 @@
     </p>
 
 </section>
-<section class="products">
+<div class="products">
 
     <div class="product">
         <img src="images/điệnthoại.jpg" class="p-img">
@@ -59,7 +67,7 @@
             <button class="detail">Chi tiết</button>
             <button class="buy"
                     onclick="addCart('Điện thoại Samsung Galaxy', 5000000, 'images/điệnthoại.jpg')">
-                Mua
+                Thêm vào giỏ hàng
             </button>
 
         </div>
@@ -76,17 +84,18 @@
             <button class="detail">Chi tiết</button>
 
             <button class="buy" onclick="addCart('Laptop', 15000000, 'images/laptop.jpg')">
-                Mua
+                Thêm vào giỏ hàng
             </button>
 
         </div>
     </div>
 
 
-    </div>
+
 
     <div class="product">
         <img src="images/tai nghe.jpg" class="p-img">
+
         <!-- TÊN -->
         <div class="name">Tai nghe</div>
         <div class="price">500000</div>
@@ -96,16 +105,16 @@
             <!-- KHÔNG dùng href nữa -->
             <button class="detail">Chi tiết</button>
 
-            <button class="buy" onclick="addCart('Tai nghe', 500000, 'images/tai nghe.jpg'')">
-                Mua
+            <button class="buy" onclick="addCart('Tai nghe', 500000, 'images/tai nghe.jpg')">
+                Thêm vào giỏ hàng
             </button>
 
         </div>
     </div>
 
-    </div>
 
-</section>
+
+</div>
 
 <script src="script.js"></script>
 <footer class="footer">

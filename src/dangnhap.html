@@ -1,70 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <title>shop A</title>
+    <title>Nguyên Khôi trade</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
+
 <body>
+
+<header>
+    <h1>Công ty TNHH Nguyên Khôi</h1>
+
+</header>
+
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="giohang.html">Giỏ hàng</a>
+    <a href="checkout.html">Thanh toán</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">Sản phẩm</button>
+        <div class="dropdown-content">
+            <a href="#">Điện thoại</a>
+            <a href="#">Laptop</a>
+            <a href="#">Tai nghe</a>
+        </div>
 
 <h1 style="text-align:center">TÀI KHOẢN</h1>
 
+<!-- ĐĂNG NHẬP -->
+<h2>Đăng nhập</h2>
 
-    <!-- FORM ĐĂNG NHẬP -->
+<form id="login-form">
 
+    <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
 
-        <h2>Đăng nhập</h2>
+    <input type="password" id="login-password" placeholder="Mật khẩu" required>
 
-        <form id="login-form">
+    <button type="submit">Đăng nhập</button>
 
-            <label>Tên đăng nhập</label>
-            <input type="text" id="username" placeholder="Nhập username" required>
+</form>
 
-            <label>Mật khẩu</label>
-            <input type="password" placeholder="Nhập password" required>
+<p id="login-error" style="color:red"></p>
 
-            <button type="submit">Đăng nhập</button>
+<!-- ĐĂNG KÝ -->
+<h2>Đăng ký</h2>
 
-        </form>
+<form id="register-form">
 
+    <input type="text" id="reg-username" placeholder="Tên đăng nhập" required>
 
+    <input type="email" id="reg-email" placeholder="Email" required>
 
-    <!-- FORM ĐĂNG KÝ -->
+    <input type="password" id="reg-password" placeholder="Mật khẩu" required>
 
+    <input type="password" id="reg-confirm" placeholder="Nhập lại mật khẩu" required>
 
-        <h2>Đăng ký</h2>
+    <button type="submit">Đăng ký</button>
 
-        <form action="index.html" method="post">
+</form>
 
-            <label>Tên đăng nhập</label>
-            <input type="text" required>
+<p id="register-msg" style="color:green"></p>
 
-            <label>Email</label>
-            <input type="email" required>
-
-            <label>Mật khẩu</label>
-            <input type="password" required>
-
-            <label>Nhập lại mật khẩu</label>
-            <input type="password" required>
-
-            <button type="submit">Đăng ký</button>
-
-        </form>
 <script>
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    /* ĐĂNG KÝ */
+    document.getElementById("register-form").addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        let username = document.getElementById("reg-username").value;
+        let email = document.getElementById("reg-email").value;
+        let password = document.getElementById("reg-password").value;
+        let confirm = document.getElementById("reg-confirm").value;
+
+        if(password !== confirm){
+            document.getElementById("register-msg").innerText = "Mật khẩu không khớp";
+            return;
+        }
+
+// kiểm tra trùng username
+        let exists = users.find(u => u.username === username);
+
+        if(exists){
+            document.getElementById("register-msg").innerText = "Username đã tồn tại";
+            return;
+        }
+
+// lưu user
+        users.push({username, email, password});
+        localStorage.setItem("users", JSON.stringify(users));
+
+        document.getElementById("register-msg").innerText = "Đăng ký thành công";
+
+    });
+
+    /* ĐĂNG NHẬP */
     document.getElementById("login-form").addEventListener("submit", function(e){
 
         e.preventDefault();
 
-        let username = document.getElementById("username").value;
+        let username = document.getElementById("login-username").value;
+        let password = document.getElementById("login-password").value;
 
-// Lưu vào localStorage
-        localStorage.setItem("user", username);
+// kiểm tra tài khoản
+        let user = users.find(u => u.username === username && u.password === password);
 
-// Chuyển sang trang chủ
-        window.location.href = "index.html";
+        if(user){
+
+            localStorage.setItem("user", username);
+
+            window.location.href = "index.html";
+
+        }else{
+
+            document.getElementById("login-error").innerText = "Sai tài khoản hoặc mật khẩu";
+
+        }
 
     });
+
 </script>
 
 </body>
